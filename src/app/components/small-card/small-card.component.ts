@@ -1,12 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { dataFake } from 'src/app/data/dataFake';
 
 @Component({
   selector: 'app-small-card',
   templateUrl: './small-card.component.html',
   styleUrls: ['./small-card.component.css']
 })
-export class SmallCardComponent {
-  photoCover: string = "https://escolasempre.com.br/wp-content/uploads/2023/03/placeholder.png";
-  cardTitle: string = "Saiu a nova versão do Angular";
+export class SmallCardComponent implements OnInit{
+
+  id: string = "";
+  photoCover: string = "";
+  cardTitle: string = "";
+  description: string = "";
+
+  ngOnInit(): void {
+    dataFake.map(item => {
+      this.id = item.id;
+      this.photoCover = item.photo;
+      this.cardTitle = item.title;
+      this.description = item.description
+    })
+  }
 
 }
